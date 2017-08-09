@@ -31,8 +31,10 @@ async function main(user) {
   app.post('/message', async (req, res) => {
     if (req.body.secret === process.env.WECHAT_BOT_SECRET) {
       await target.say(req.body.content)
+      console.log('sending message success')
       res.send('ok')
     } else {
+      console.log('secret not match')
       res.send('secret not correct')
     }
   })
