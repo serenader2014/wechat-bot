@@ -30,9 +30,12 @@ async function main(user) {
   app.use(bodyParser.json())
   app.post('/message', (req, res) => {
     if (req.body.secret === process.env.WECHAT_BOT_SECRET) {
-      target.say(req.body.content)
+      await target.say(req.body.content)
+      res.send('ok')
+    } else {
+      res.send('secret not correct')
     }
   })
 
-  app.listen(port, () => console.log(`Wechat bot listen on ${port}`))
+  app.listen(port, () => console.log(`Wechat bot is listening on port ${port}`))
 }
