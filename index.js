@@ -28,7 +28,7 @@ async function main(user) {
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  app.post('/message', (req, res) => {
+  app.post('/message', async (req, res) => {
     if (req.body.secret === process.env.WECHAT_BOT_SECRET) {
       await target.say(req.body.content)
       res.send('ok')
